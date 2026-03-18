@@ -85,9 +85,15 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
         modifyMapping("ghost", "steel", 0.5, atk_mapping, def_mapping)
         modifyMapping("dark", "steel", 0.5, atk_mapping, def_mapping)
 
-    ptypes = ptype.split(" ")
+    if isinstance(ptype, str):
+        ptypes = ptype.split(" ")
+    else:
+        ptypes = ptype
     if otype != None:
-        otypes = otype.split(" ")
+        if isinstance(otype, str):
+            otypes = otype.split(" ")
+        else:
+            otypes = otype
 
     # TYPING ERROR CHECKING
     toRemove = []
