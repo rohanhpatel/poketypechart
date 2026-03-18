@@ -100,7 +100,7 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
         pStr = " ".join([x.title() for x in ptypes])
         if pmon:
             pStr = pmon
-        outputText = f"No valid types in {pStr} in gen {gen}, exiting"
+        outputText = f"No valid types for {pStr} in gen {gen}, exiting"
         document.getElementById('output').innerText = outputText
         return
 
@@ -115,7 +115,7 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
             pStr = " ".join([x.title() for x in otypes])
             if pmon:
                 pStr = pmon
-            outputText = f"No valid types in {pStr} in gen {gen}, exiting"
+            outputText = f"No valid types for {pStr} in gen {gen}, exiting"
             document.getElementById('output').innerText = outputText
             return
 
@@ -239,15 +239,15 @@ def getValues(event):
     torp2 = torp2dd.value
     value2inp = document.getElementById('values-2')
     if torp2 != "s":
-        if torp2 == "t":
-            omon = None
-            otype = value2inp.value
-        elif torp2 == "p":
-            omon = value2inp.value
-            otype = poketypes(omon)
-            if otype == 0:
-                return
-    else:
         omon = None
         otype = None
+    elif torp2 == "t":
+        omon = None
+        otype = value2inp.value
+    elif torp2 == "p":
+        omon = value2inp.value
+        otype = poketypes(omon)
+        if otype == 0:
+            return
+        
     showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon)
