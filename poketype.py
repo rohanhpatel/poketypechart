@@ -60,8 +60,9 @@ def removeInvalidTypes(typeList, atk_mapping, def_mapping):
 def poketypes(pokemon):
     pokemon_obj = requests.get(f"https://pokeapi.co/api/v2/pokemon/{pokemon.lower()}")
     if pokemon_obj.status_code != 200:
-        print("This Pokemon doesn't exist in the database, exiting")
-        exit(1)
+        outputText = "This Pokemon doesn't exist in the database, exiting"
+        document.getElementById("output").innerText = outputText
+        return 0
     else:
         pokemon_dict = pokemon_obj.json()
         pokemon_types = []
@@ -84,10 +85,6 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
         modifyMapping("ghost", "steel", 0.5, atk_mapping, def_mapping)
         modifyMapping("dark", "steel", 0.5, atk_mapping, def_mapping)
 
-    # TESTING
-    #print(ATK_MAPPING["ghost"])
-    #print(DEF_MAPPING["steel"])
-
     if isinstance(ptype, str):
         ptypes = ptype.split(" ")
     else:
@@ -101,13 +98,15 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
     # TYPING ERROR CHECKING
     for t in ptypes:
         if not t.lower() in atk_mapping:
-            print(f"{t} is not a valid type in gen {gen}, exiting")
-            exit(1)
+            outputText = f"{t} is not a valid type in gen {gen}, exiting"
+            document.getElementById('output').innerText = outputText
+            return
     if otype!= None:
         for t in otypes:
             if not t.lower() in atk_mapping:
-                print(f"{t} is not a valid type in gen {gen}, exiting")
-                exit(1)
+                outputText = f"{t} is not a valid type in gen {gen}, exiting"
+                document.getElementById('output').innerText = outputText
+                return
 
     # MAIN
     if otype != None:
@@ -188,8 +187,6 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
                 if val2 and t.lower() in val2:
                     val *= val2[t.lower()]
             combinedDict[t.lower()] = val
-        
-        #print(f"Combined typing: {combinedDict}")
 
         valueMapping = {}
         for key in combinedDict:
@@ -223,6 +220,8 @@ def getValues(event):
     elif torp1 == "p":
         pmon = value1inp.value
         ptype = poketypes(pmon)
+        if ptype == 0:
+            return
     atkdefdd = document.getElementById('atkdef')
     atkdef = atkdefdd.value
     torp2dd = document.getElementById('type-or-pokemon-2')
@@ -235,6 +234,8 @@ def getValues(event):
         elif torp2 == "p":
             omon = value2inp.value
             otype = poketypes(omon)
+            if otype == 0:
+                return
     else:
         omon = None
         otype = None
