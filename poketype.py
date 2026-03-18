@@ -1,3 +1,6 @@
+import pyodide_http
+pyodide_http.patch_all()  # This makes 'requests' work in the browser!
+
 import requests
 from pyscript import document, display
 
