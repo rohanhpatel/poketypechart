@@ -98,13 +98,13 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
     # TYPING ERROR CHECKING
     for t in ptypes:
         if not t.lower() in atk_mapping:
-            outputText = f"{t} is not a valid type in gen {gen}, exiting"
+            outputText = f"{t.title()} is not a valid type in gen {gen}, exiting"
             document.getElementById('output').innerText = outputText
             return
     if otype!= None:
         for t in otypes:
             if not t.lower() in atk_mapping:
-                outputText = f"{t} is not a valid type in gen {gen}, exiting"
+                outputText = f"{t.title()} is not a valid type in gen {gen}, exiting"
                 document.getElementById('output').innerText = outputText
                 return
 
