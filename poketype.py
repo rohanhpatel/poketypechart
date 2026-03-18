@@ -244,7 +244,7 @@ def getValues(event):
     torp2dd = document.getElementById('type-or-pokemon-2')
     torp2 = torp2dd.value
     value2inp = document.getElementById('values-2')
-    if torp2 != "s":
+    if torp2 == "s":
         omon = None
         otype = None
     elif torp2 == "t":
