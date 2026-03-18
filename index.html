@@ -5,6 +5,7 @@
 </head>
 <body>
     <label for="generation">Generation number</label>
+    <br>
     <select id="generation">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -16,27 +17,42 @@
         <option value="8">8</option>
         <option value="9">9</option>
     </select>
+    <br>
     <label for="type-or-pokemon-1">Type or Pokemon?</label>
+    <br>
     <select id="type-or-pokemon-1">
         <option value="t">Type</option>
         <option value="p">Pokemon</option>
     </select>
+    <br>
     <label for="values-1">Type or Pokemon Names</label>
+    <br>
     <input id="values-1" type="text">
+    <br>
     <label for="atkdef">Attacking or Defending?</label>
+    <br>
     <select id="atkdef">
         <option value="atk">Attack</option>
         <option value="def">Defend</option>
     </select>
+    <br>
     <label for="type-or-pokemon-2">Type or Pokemon?</label>
+    <br>
     <select id="type-or-pokemon-2">
         <option value="s">None</option>
         <option value="t">Type</option>
         <option value="p">Pokemon</option>
     </select>
+    <br>
     <label for="values-2">Type or Pokemon Names</label>
+    <br>
     <input id="values-2" type="text">
+    <br>
     <button id="run-script" py-click="getValues">Submit</button>
+    <br>
     <div id="output"></div>
+    <py-config>
+        packages = ["requests", "pyodide-http"]
+    </py-config>
     <script type="py" src="./poketype.py"></script>
 </body>
