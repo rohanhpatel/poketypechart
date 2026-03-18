@@ -85,28 +85,39 @@ def showTypingEffectiveness(gen, ptype, pmon, atkdef, otype, omon):
         modifyMapping("ghost", "steel", 0.5, atk_mapping, def_mapping)
         modifyMapping("dark", "steel", 0.5, atk_mapping, def_mapping)
 
-    if isinstance(ptype, str):
-        ptypes = ptype.split(" ")
-    else:
-        ptypes = ptype
+    ptypes = ptype.split(" ")
     if otype != None:
-        if isinstance(otype, str):
-            otypes = otype.split(" ")
-        else:
-            otypes = otype
+        otypes = otype.split(" ")
 
     # TYPING ERROR CHECKING
+    toRemove = []
     for t in ptypes:
         if not t.lower() in atk_mapping:
-            outputText = f"{t.title()} is not a valid type in gen {gen}, exiting"
-            document.getElementById('output').innerText = outputText
-            return
-    if otype!= None:
+            toRemove.append(t)
+    for elem in toRemove:
+        ptypes.remove(elem)
+    if len(ptypes) == 0:
+        pStr = " ".join([x.title() for x in ptypes])
+        if pmon:
+            pStr = pmon
+        outputText = f"No valid types in {pStr} in gen {gen}, exiting"
+        document.getElementById('output').innerText = outputText
+        return
+
+    if otype != None:
+        toRemove = []
         for t in otypes:
             if not t.lower() in atk_mapping:
-                outputText = f"{t.title()} is not a valid type in gen {gen}, exiting"
-                document.getElementById('output').innerText = outputText
-                return
+                toRemove.append(t)
+        for elem in toRemove:
+            otypes.remove(elem)
+        if len(otypes) == 0:
+            pStr = " ".join([x.title() for x in otypes])
+            if pmon:
+                pStr = pmon
+            outputText = f"No valid types in {pStr} in gen {gen}, exiting"
+            document.getElementById('output').innerText = outputText
+            return
 
     # MAIN
     if otype != None:
