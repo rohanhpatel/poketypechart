@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+    <label for="generation">Generation number</label>
+    <select id="generation">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+    </select>
+    <label for="type-or-pokemon-1">Type or Pokemon?</label>
+    <select id="type-or-pokemon-1">
+        <option value="t">Type</option>
+        <option value="p">Pokemon</option>
+    </select>
+    <label for="values-1">Type or Pokemon Names</label>
+    <input id="values-1" type="text">
+    <label for="atkdef">Attacking or Defending?</label>
+    <select id="atkdef">
+        <option value="atk">Attack</option>
+        <option value="def">Defend</option>
+    </select>
+    <label for="type-or-pokemon-2">Type or Pokemon?</label>
+    <select id="type-or-pokemon-2">
+        <option value="s">None</option>
+        <option value="t">Type</option>
+        <option value="p">Pokemon</option>
+    </select>
+    <label for="values-2">Type or Pokemon Names</label>
+    <input id="values-2" type="text">
+    <button id="run-script" py-click="getValues">Submit</button>
+    <div id="output"></div>
+    <script type="py" src="./poketype.py"></script>
+</body>
